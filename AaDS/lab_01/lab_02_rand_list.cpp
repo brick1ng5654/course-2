@@ -2,8 +2,7 @@
 #include <vector>
 #include <sstream>
 #include <string>
-
-// List
+#define REPEAT 100000
 
 struct Node{ // Structure of Node
     int data;
@@ -76,32 +75,64 @@ void intersection(Node *&res_list,Node *ad1_list, Node *ad2_list){
     }
 }
 
-int main() {
-    // Init
-    std::vector<int> A, B, C, D, E;
-    Node* A_list = nullptr;
-    Node* B_list = nullptr;
-    Node* C_list = nullptr;
-    Node* D_list = nullptr;
-    Node* CiD_list = nullptr;
-    Node* E_list = nullptr;
-    // Enter the data
-    input_in_vector(A, "A"); // 1, 2
-    input_in_vector(B, "B"); // 4, 7
-    input_in_vector(C, "C"); // 3, 5
-    input_in_vector(D, "D"); // 5, 8, 9
-    // Reform to list
-    A_list = array_to_list(A);
-    B_list = array_to_list(B);
-    C_list = array_to_list(C);
-    D_list = array_to_list(D);
-    //Algorithm
-    association(E_list, A_list);
-    association(E_list, B_list);
-    intersection(CiD_list, C_list, D_list);
-    association(E_list, CiD_list);
+void generate_random_numbers(Node*& head) {
+    int count = rand() % 10;
+    while (count > 0) {
+        int num = rand() % 10;
+        if (!is_in_list(num, head)) {
+            push_back(head, num);
+            count--;
+        }
+    }
+}
 
-    print_list(E_list);
-    
+void print_array(const std::vector<int> array){
+    for(int i=0; i<array.size();i++){
+        std::cout << array[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+void delete_list(Node*& head) {
+    while (head) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+int main() {
+    srand(time(0)); 
+    //Algorithm
+    int t1 = clock();
+    for(int i=0; i<REPEAT; i++){
+        Node* A_list = nullptr;
+        Node* B_list = nullptr;
+        Node* C_list = nullptr;
+        Node* D_list = nullptr;
+        Node* CiD_list = nullptr;
+        Node* E_list = nullptr;
+
+        generate_random_numbers(A_list);
+        generate_random_numbers(B_list);
+        generate_random_numbers(C_list);
+        generate_random_numbers(D_list);
+
+        association(E_list, A_list);
+        association(E_list, B_list);
+        intersection(CiD_list, C_list, D_list);
+        association(E_list, CiD_list);
+
+        delete_list(A_list);
+        delete_list(B_list);
+        delete_list(C_list);
+        delete_list(D_list);
+        delete_list(E_list);
+        delete_list(CiD_list);
+    }
+    int t2 = clock();
+    double t = double(t2 - t1) / CLOCKS_PER_SEC;
+    std::cout << "Time: " << t;
+
     return 0;
 }

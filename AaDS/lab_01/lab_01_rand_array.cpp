@@ -2,6 +2,7 @@
 #include <vector>
 #include <sstream>
 #include <string>
+#define REPEAT 100000
 
 void input_in_vector(std::vector<int> &inputed, const std::string &name){ // Enter the data of array (vector)
     std::string input;
@@ -38,24 +39,41 @@ void intersection(std::vector<int>& result, const std::vector<int>& additional){
     }
 }
 
-int main() {
-    std::vector<int> A, B, C, D, E;
-    // Enter the data
-    input_in_vector(A, "A"); // 1, 2
-    input_in_vector(B, "B"); // 4, 7
-    input_in_vector(C, "C"); // 3, 5
-    input_in_vector(D, "D"); // 5, 8, 9
-    // Algorithm
-    E = A;
-    association(E, B);
-    intersection(C, D);
-    association(E, C);
-    // Output {1, 2, 4, 7, 5}
-    std::cout << "Resulting set: ";
-    for(int i = 0; i < E.size(); i++) {
-        std::cout << E[i] << " ";
+void generate_random_numbers(std::vector<int> &array) {
+    for (int i = 0; i < (rand() % 10); i++) {
+        int num = rand() % 10;
+        if(!is_in_set(num, array)){
+            array.push_back(num);
+        }
+    }
+}
+
+void print_array(const std::vector<int> array){
+    for(int i=0; i<array.size();i++){
+        std::cout << array[i] << " ";
     }
     std::cout << std::endl;
+}
+
+int main() {
+    srand(time(0)); 
+    // Enter the data
+    int t1 = clock();
+    for(int i=0; i<REPEAT;i++){
+        std::vector<int> A, B, C, D, E;
+        generate_random_numbers(A);
+        generate_random_numbers(B);
+        generate_random_numbers(C);
+        generate_random_numbers(D);
+        E = A;
+        association(E, B);
+        intersection(C, D);
+        association(E, C);
+    }
+    int t2 = clock();
+    double t = double(t2 - t1) / CLOCKS_PER_SEC;
+    
+    std::cout << "Time: " << t;
     
     return 0;
 }

@@ -2,7 +2,6 @@
 #include <vector>
 #include <sstream>
 #include <string>
-#include <bitset>
 
 void input_in_vector(std::vector<int> &inputed, const std::string &name){ // Enter the data of array (vector)
     std::string input;
@@ -24,43 +23,44 @@ bool is_in_set(int element, const std::vector<int>& set){ // Is element contain 
     return false;
 }
 
-void association(unsigned int result, unsigned int additional){ // Association of 2 sets, result of operation contain in the first set
-    for(int i=0; i<16; i++){
-        if(additional & (1<<i)){
-           result |= (1<<i); 
-        }
-    }
+void association(unsigned short &result, unsigned short additional){ // Association of 2 sets, result of operation contain in the first set
+    result |= additional; // byte by byte association
 }
 
-void intersection(std::vector<int>& result, const std::vector<int>& additional){ // Intersection of 2 sets, result of operation contain in the first set
-    auto number = result.begin();
-    while(number!=result.end()){
-        if(!is_in_set(*number, additional)){
-            number = result.erase(number); // Delete the value of set
-        } else { number++;}
-    }
+void intersection(unsigned short &result, unsigned short additional){ // Intersection of 2 sets, result of operation contain in the first set
+    result &= additional; // byte by byte intersection
 }
 
-void array_to_machine_word(unsigned int &number ,const std::vector<int>& array){
-    for(int i=0; i<16; i++){
+void array_to_machine_word(unsigned short &number ,const std::vector<int>& array){
+    for(int i=0; i<sizeof(unsigned short)*8; i++){
         if(is_in_set(i, array)){
-            number |= (1 << i);
+            number |= (1 << i); // to bytes of number add 1 if i in array
         }
     }
 }
 
-void print_machine_word(unsigned int &number){
-    for(int i=0; i<16; i++){
+void print_machine_word(unsigned short &number){
+    for(int i=0; i<10; i++){
         if(number & (1 << i)){
             std::cout << i << " ";
         }
+    }
+    std::cout << "\n\t\t";
+    for(int i=sizeof(number)*8-1; i>=0; i--){
+        if(number & (1 << i)){
+            std::cout << 1;
+        } else std::cout << 0;
     }
     std::cout <<std::endl;
 }
 
 int main() {
     std::vector<int> A, B, C, D, E;
-    unsigned int wA, wB, wC, wD, wE;
+    unsigned short wA = 0;
+    unsigned short wB = 0;
+    unsigned short wC = 0;
+    unsigned short wD = 0;
+    unsigned short wE;
     // Enter the data
     input_in_vector(A, "A"); // 1, 2
     input_in_vector(B, "B"); // 4, 7
@@ -71,11 +71,11 @@ int main() {
     array_to_machine_word(wB, B);
     array_to_machine_word(wC, C);
     array_to_machine_word(wD, D);
-    // Algorythm
+    // Algorithm
     wE = wA;
-    print_machine_word(wA);
     association(wE,wB);
+    intersection(wC, wD);
+    association(wE, wC);
     print_machine_word(wE);
     return 0;
 }
-
