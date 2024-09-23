@@ -74,7 +74,7 @@ void intersection(Node *&res_list,Node *ad1_list, Node *ad2_list){
         }
         ad1_list = ad1_list->next;
     }
-}
+}//////////////////////////aaaaaaaaaaaaaaaaaaa
 
 int main() {
     // Init

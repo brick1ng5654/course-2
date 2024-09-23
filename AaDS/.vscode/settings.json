@@ -51,6 +51,8 @@
     "vector": "cpp",
     "sstream": "cpp",
     "string": "cpp",
-    "bitset": "cpp"
+    "bitset": "cpp",
+    "xtree": "cpp",
+    "set": "cpp"
   }
 }
