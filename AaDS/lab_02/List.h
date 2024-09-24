@@ -20,7 +20,7 @@ public:
     void input_in_set();
     void print_set();
     bool is_in_set(int element);
-    void association(const Set additional);
+    void association(const Set &additional);
     void intersection(Set& additional);
     void fill_random();
     void timer();

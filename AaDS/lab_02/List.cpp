@@ -59,7 +59,7 @@ bool Set::is_in_set(int element){
     return false;
 }
 
-void Set::association(const Set additional) {
+void Set::association(const Set& additional) {
     Node* current = additional.set;
     while (current) {
         if (!is_in_set(current->data)) {
@@ -106,20 +106,25 @@ void Set::timer() {
 
     int t1 = clock();
     for (int i = 0; i < 100000; i++) {
-        Set A_list, B_list, C_list, D_list, CiD_list, E_list;
+        Set *A_list = new Set;
+        Set *B_list = new Set;
+        Set *C_list = new Set;
+        Set *D_list = new Set;
+        Set *CiD_list = new Set;
+        Set *E_list = new Set;
 
-        A_list.fill_random();
-        B_list.fill_random();
-        C_list.fill_random();
-        D_list.fill_random();
+        A_list->fill_random();
+        B_list->fill_random();
+        C_list->fill_random();
+        D_list->fill_random();
 
-        E_list.association(A_list);
-        E_list.association(B_list);
-        CiD_list.intersection(C_list);
-        E_list.association(CiD_list);
+        E_list->association(*A_list);
+        E_list->association(*B_list);
+        CiD_list->intersection(*C_list);
+        E_list->association(*CiD_list);
     }
     int t2 = clock();
 
     double t = double(t2 - t1) / CLOCKS_PER_SEC;
-    std::cout << "Time: " << t << " sec" << std::endl;
+    std::cout << "Time: " << t << "*10(-5) sec" << std::endl;
 }

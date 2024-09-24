@@ -1,7 +1,7 @@
 // #include "Array.h"
-#include "List.h"
+// #include "List.h"
 // #include "Barray.h"
-// #include "Mword.h"
+#include "Mword.h"
 #include <vector>
 #include <string>
 #include <time.h>
