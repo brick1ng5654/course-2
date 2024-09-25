@@ -54,5 +54,6 @@
     "bitset": "cpp",
     "xtree": "cpp",
     "set": "cpp"
-  }
+  },
+  "cmake.sourceDirectory": "C:/GitHub/course-2/AaDS"
 }
