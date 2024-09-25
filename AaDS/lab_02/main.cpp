@@ -1,5 +1,6 @@
-#include "Array.h"
-// #include "List.h"
+#include <iostream>
+// #include "Array.h"
+#include "List.h"
 // #include "Barray.h"
 // #include "Mword.h"
 #include <vector>
@@ -10,6 +11,7 @@
 
 int main() {
     srand(time(0));
+    {
     std::vector<Set> sets(5);
     
     for(int i=0; i<4;i++){
@@ -25,5 +27,8 @@ int main() {
     sets[4].set_the_name("Resulting set");
     sets[4].print_set();
     sets[4].timer();
+    }
+    std::cout << "Enter..";
+    std::cin.get();
     return 0;
 }

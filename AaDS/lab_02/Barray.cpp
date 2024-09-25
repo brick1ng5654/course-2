@@ -10,11 +10,11 @@ void Set::set_the_name(const std::string name){
 }
 
 void Set::association(const Set& additional) {
-    set |= additional.set; // Побитовое ИЛИ для объединения
+    set |= additional.set; // byte by byte OR
 }
 
 void Set::intersection(const Set& additional) {
-    set &= additional.set; // Побитовое И для пересечения
+    set &= additional.set; // byte by byte AND
 }
 
 void Set::print_set() const{

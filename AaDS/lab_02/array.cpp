@@ -5,6 +5,17 @@
 #include <string>
 #include <limits>
 
+int Set::tag_counter = 0;
+
+Set::Set(){
+    tag = ++tag_counter;
+    std::cout << "Set created with name and tag: " << name << " " << tag_counter << std::endl;
+}
+
+Set::~Set(){
+    std::cout << "Set destroyed with name and tag: " << name << " " << tag << std::endl;
+}
+
 int Set::size() const{
     return set.size();
 }

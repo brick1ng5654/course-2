@@ -53,7 +53,20 @@
     "string": "cpp",
     "bitset": "cpp",
     "xtree": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "array": "cpp",
+    "*.tcc": "cpp",
+    "cwctype": "cpp",
+    "deque": "cpp",
+    "unordered_map": "cpp",
+    "algorithm": "cpp",
+    "functional": "cpp",
+    "memory_resource": "cpp",
+    "numeric": "cpp",
+    "optional": "cpp",
+    "random": "cpp",
+    "string_view": "cpp",
+    "numbers": "cpp"
   },
   "cmake.sourceDirectory": "C:/GitHub/course-2/AaDS"
 }

@@ -39,7 +39,7 @@ void Set::set_the_name(std::string name){
 }
 
 void Set::print_set() {
-    Node* current = set; // Создаем временный указатель, чтобы не изменить set
+    Node* current = set; // Create temp pointer, just not to change the original set
     std::cout << name << ": ";
     while (current) {
         std::cout << current->data << " ";
@@ -49,7 +49,7 @@ void Set::print_set() {
 }
 
 bool Set::is_in_set(int element){
-    Node* current = set; // Создаем временный указатель
+    Node* current = set; // Temporal pointer
     while (current) {
         if (element == current->data) {
             return true;
@@ -72,18 +72,18 @@ void Set::association(const Set& additional) {
 void Set::intersection(Set& additional) {
     Node* current = set;
     Node* prev = nullptr;
+
     while (current) {
         if (!additional.is_in_set(current->data)) {
+            Node* toDelete = current;
             if (prev) {
                 prev->next = current->next;
-            }
-            else {
+            } else {
                 set = current->next;
             }
-            delete current;
-            current = prev ? prev->next : set;
-        }
-        else {
+            current = current->next;
+            delete toDelete;
+        } else {
             prev = current;
             current = current->next;
         }
