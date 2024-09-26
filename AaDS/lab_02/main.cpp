@@ -1,6 +1,6 @@
 #include <iostream>
-// #include "Array.h"
-#include "List.h"
+#include "Array.h"
+// #include "List.h"
 // #include "Barray.h"
 // #include "Mword.h"
 #include <vector>
@@ -26,7 +26,7 @@ int main() {
 
     sets[4].set_the_name("Resulting set");
     sets[4].print_set();
-    sets[4].timer();
+    // sets[4].timer();
     }
     std::cout << "Enter..";
     std::cin.get();
