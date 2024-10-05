@@ -56,9 +56,9 @@ public class MovieList {
         movieList.add(toolBar, BorderLayout.NORTH); // Начальное положение панели инструментов
 
         // Создание таблицы с данными
-        String [] columns = {"Режиссёр", "Фильм", "Просмотрен"};
-        String [][] data = {{"Квентин Тарантино", "Бешеные псы", "Да"},
-                {"Мартин Скорсезе", "Отступники", "Нет"}};
+        String [] columns = {"Фильм", "Режиссёр", "Просмотрен"};
+        String [][] data = {{"Бешеные псы", "Квентин Тарантино", "Да"},
+                {"Отступники","Мартин Скорсезе", "Нет"}};
         modelMovies=  new DefaultTableModel(data, columns);
         movies = new JTable(modelMovies);
         scroll = new JScrollPane(movies);
@@ -67,7 +67,7 @@ public class MovieList {
         movieList.add(scroll, BorderLayout.CENTER);
 
         // Подготовка компонентов поиска
-        director = new JComboBox(new String[]{"Режиссёр", "лошара", "Квентин Тарантино", "Мартин Скорсезе"});
+        director = new JComboBox(new String[]{"Режиссёр", "Дэвид Финчер", "Квентин Тарантино", "Мартин Скорсезе"});
         movieName = new JTextField("Название фильма");
         filter = new JButton("Поиск");
         // Добавление компонентов на панель
