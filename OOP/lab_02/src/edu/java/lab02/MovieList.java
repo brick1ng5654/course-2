@@ -72,7 +72,8 @@ public class MovieList {
         filter = new JButton("Поиск");
         // Добавление компонентов на панель
         JPanel filterPanel = new JPanel();
-        filterPanel.add(director); // Добавление на панель поиска
+        filterPanel.add(director); // Добавлени
+        // е на панель поиска
         filterPanel.add(movieName);
         filterPanel.add(filter);
 
