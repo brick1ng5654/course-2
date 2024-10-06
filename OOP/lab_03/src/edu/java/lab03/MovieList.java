@@ -96,7 +96,7 @@ public class MovieList {
         // Подготовка компонентов поиска
         director = new JComboBox(new String[]{"Режиссёр", "Дэвид Финчер", "Квентин Тарантино", "Мартин Скорсезе"});
 
-        movieName = new JTextField("Название фильма");
+        movieName = new JTextField("Ключевое слово", 20);
         movieName.addFocusListener(new FocusAdapter() {
             public void focusGained(FocusEvent e) {
                 movieName.setText(""); // Очистить поле при получении фокуса
