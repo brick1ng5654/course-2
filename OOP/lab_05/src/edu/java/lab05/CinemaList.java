@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-
 public class CinemaList {
     // Объявления графических компонентов
     private JFrame cinemaList;
@@ -72,12 +71,6 @@ public class CinemaList {
                 loadFromFile();
             }
         });
-
-
-
-        print = new JButton(new ImageIcon("src/img/print.png"));
-        print.setToolTipText("Распечатать");
-        toolBar.add(print);
 
         edit = new JButton(new ImageIcon("src/img/edit.png"));
         edit.setToolTipText("Редактировать данные");
@@ -170,7 +163,6 @@ public class CinemaList {
                 }
             }
         });
-
 
         // Визуализация экранной формы
         cinemaList.setVisible(true);
