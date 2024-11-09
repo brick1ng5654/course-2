@@ -68,7 +68,10 @@
     "string_view": "cpp",
     "numbers": "cpp",
     "span": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "iomanip": "cpp",
+    "queue": "cpp",
+    "ranges": "cpp"
   },
   "cmake.sourceDirectory": "C:/GitHub/course-2/AaDS"
 }

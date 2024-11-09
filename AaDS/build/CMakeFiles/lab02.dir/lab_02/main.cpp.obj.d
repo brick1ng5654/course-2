@@ -127,7 +127,7 @@ CMakeFiles/lab02.dir/lab_02/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.2.0/bits/ostream.tcc \
  C:/msys64/mingw64/include/c++/13.2.0/istream \
  C:/msys64/mingw64/include/c++/13.2.0/bits/istream.tcc \
- C:\GitHub\course-2\AaDS\lab_02\Mword.h \
+ C:\GitHub\course-2\AaDS\lab_02\Array.h \
  C:/msys64/mingw64/include/c++/13.2.0/vector \
  C:/msys64/mingw64/include/c++/13.2.0/bits/stl_uninitialized.h \
  C:/msys64/mingw64/include/c++/13.2.0/bits/stl_vector.h \
