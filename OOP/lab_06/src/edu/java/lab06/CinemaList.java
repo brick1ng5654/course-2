@@ -446,7 +446,7 @@ public class CinemaList {
         String filePath = directory + filename;
 
         try {
-            Document doc = getDocument(filePath);
+            Document doc = getDocument();
             // Создаём корневой элемент booklist и добавляем его в документ
             Node booklist = doc.createElement("booklist");// создать элемент
             doc.appendChild(booklist);// добавляем ребёнка
@@ -525,6 +525,18 @@ public class CinemaList {
             // Создает пустой документ
             DocumentBuilder builder = f.newDocumentBuilder();
             return builder.parse(new File(filePath));
+        } catch (Exception exception) {
+            throw new Exception("XML parsing error!");
+        }
+    }
+
+    private static Document getDocument() throws Exception {
+        try {
+            // Получаем парсер, порождающий дерево объектов XML - документов
+            DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();// Новый экземпляр
+            // Создает пустой документ
+            DocumentBuilder builder = f.newDocumentBuilder();
+            return builder.newDocument();
         } catch (Exception exception) {
             throw new Exception("XML parsing error!");
         }

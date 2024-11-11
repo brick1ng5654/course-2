@@ -48,6 +48,8 @@
     "xloctime": "cpp",
     "xmemory": "cpp",
     "xstring": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "LAB04_02.C": "cpp",
+    "LAB04.C": "cpp"
   }
 }
