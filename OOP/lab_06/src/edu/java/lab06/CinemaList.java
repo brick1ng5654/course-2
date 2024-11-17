@@ -34,7 +34,7 @@ public class CinemaList {
     // Объявления графических компонентов
     private JFrame cinemaList;
     private DefaultTableModel modelMovies, modelSessions;
-    private JButton save, add, delete, upload, print, edit, saveXML, loadXML;
+    private JButton save, add, delete, upload, print, edit, saveXML, loadXML, saveHTML, savePDF;
     private JToolBar toolBar;
     private JScrollPane scrollMovies, scrollSessions;
     private JTable tableMovies, tableSessions;
@@ -111,6 +111,14 @@ public class CinemaList {
                 loadFromXML();
             }
         });
+
+        savePDF = new JButton(new ImageIcon("src/img/pdf_upload.png"));
+        savePDF.setToolTipText("Сохранить данные в PDF-отчёт");
+        toolBar.add(savePDF);
+
+        saveHTML = new JButton(new ImageIcon("src/img/html_upload.png"));
+        saveHTML.setToolTipText("Сохранить данные в HTML-отчёт");
+        toolBar.add(saveHTML);
 
         // Создание таблицы для фильмов
         String [] columnsMovies = {"Год", "Фильм", "Режиссёр", "Жанр"};
