@@ -31,30 +31,30 @@ void assign_names_by_level(TreeNode* root) {
     }
 }
 
+TreeNode* insert_helper(const std::string& input, size_t& index){
+    if (index >= input.length() || input[index] == '0'){
+        return nullptr;
+    }
+
+    TreeNode* node = new TreeNode(input[index] - '0');
+    index++;
+
+    if(index < input.length() && input[index] != '0'){
+        node->left = insert_helper(input, index);
+    } 
+
+    if(index < input.length() && input[index] != '0'){
+        node->right = insert_helper(input, index);
+    } 
+
+    return node;
+}
+
 void insert(TreeNode*& root, const std::string& input){
     if(input.empty()) return;
 
-    std::queue<TreeNode*> q;
-    root = new TreeNode(input[0] - '0');
-    q.push(root);
-
-    size_t i = 1;
-    while(i<input.length()){
-        TreeNode *current = q.front();
-        q.pop();
-
-        if(input[i] == '1'){
-            current->left = new TreeNode(input[i] - '0');
-            q.push(current->left);
-        }
-        i++;
-
-        if(i<input.length() && input[i]=='1'){
-            current->right = new TreeNode(input[i] - '0');
-            q.push(current->right);
-        }
-        i++;
-    }
+    size_t index = 0;
+    root = insert_helper(input, index);
 }
 
 void fill_levels(TreeNode* node, std::vector<std::vector<std::string>>& levels, int depth, int pos, int width) {

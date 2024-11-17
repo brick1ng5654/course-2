@@ -1,1 +1,1 @@
-(1 << depth) - 1
+assign_names_by_level

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<booklist>
+        
+    <book author="М. Скорсезе" nameBook="//////////////" presence="***" year="2019"/>
+        
+    <book author="000000" nameBook="Паразиты" presence="Драма" year="000000"/>
+        
+    <book author="Ф. Дарабонт" nameBook="Побег из Шоушенка" presence="Драма" year="1994"/>
+        
+    <book author="Х. Чжао" nameBook="Земля Кочевников" presence="Драма" year="2020"/>
+        
+    <book author="Д. Шазелл" nameBook="Одержимость" presence="Драма" year="2014"/>
+        
+    <book author="Д. Шазелл" nameBook="Ла-Ла-Ленд" presence="Мюзикл" year="2017"/>
+        
+    <book author="Д. Финчер" nameBook="Бойцовский Клуб" presence="Триллер" year="1999"/>
+        
+    <book author="Д. Финчер" nameBook="Зодиак" presence="Детектив" year="2007"/>
+    
+</booklist>
