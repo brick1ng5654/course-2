@@ -6,7 +6,6 @@
 #include <iomanip>
 #include <queue>
 
-
 struct TreeNode { // structure of tree
     int value; // value of int data
     TreeNode* left; // left child

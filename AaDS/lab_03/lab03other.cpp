@@ -10,10 +10,10 @@ using namespace std;
 const int scale = 256;
 
 class Node {
-    public:
     char d;     // тег узла
     Node *lft;  // левый сын
     Node *rgt;  // правый сын
+    public:
 
     Node() : lft(nullptr), rgt(nullptr) {} // конструктор узла
     ~Node() {
@@ -45,24 +45,6 @@ Tree::Tree(char nm, char mnm, int mxr) :
 
 Tree::~Tree() {
     delete root;
-}
-
-bool promptUser(int depth, const char* position, char currentSymbol) {
-    char response;
-    while (true) {
-        cout << "Current symbol to add: " << currentSymbol << endl;
-        cout << "Do you want to fill this " << position << " node (level " << depth << ")? (1 - yes / 0 - no): ";
-        cin >> response;
-
-        if (cin.fail() || (response != '1' && response != '0')) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input. Please enter 1 (yes) or 0 (no)." << endl;
-        } else {
-            break;
-        }
-    }
-    return response == '1';
 }
 
 Node* Tree::MakeNode(const string& input, size_t& index, int depth) {
