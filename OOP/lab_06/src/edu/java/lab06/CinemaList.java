@@ -41,6 +41,7 @@ public class CinemaList {
     private JComboBox director;
     private JTextField wordToFind;
     private JButton filter;
+    private String fileNameOpen = null;
 
     public void show() {
         // Создание окна
@@ -548,6 +549,15 @@ public class CinemaList {
         } catch (Exception exception) {
             throw new Exception("XML parsing error!");
         }
+    }
+
+    public boolean intt() {
+        return "Введите данные".equals(movieField.getText());
+    }
+
+    // Метод для проверки переменной fileNameOpen
+    public boolean wert() {
+        return fileNameOpen == null;
     }
 
     public static void main(String[] args) {
