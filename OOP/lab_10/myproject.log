@@ -4,3 +4,6 @@
 23:31:17,285 DEBUG AWT-EventQueue-0 CinemaList:loadFromFile:368 - The method of loading from file was called
 23:31:51,219 DEBUG main CinemaList:show:30 - App is started
 23:32:01,836 DEBUG AWT-EventQueue-0 CinemaList:saveToFile:328 - The method of saving the file was called
+20:39:51,356 DEBUG main CinemaList:show:30 - App is started
+20:39:54,407 DEBUG AWT-EventQueue-0 CinemaList:addMovie:224 - Method of adding the movie was called
+20:39:57,022 DEBUG AWT-EventQueue-0 CinemaList:saveToFile:328 - The method of saving the file was called

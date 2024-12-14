@@ -528,7 +528,7 @@ public class CinemaList {
     }
 
     public boolean wert() {
-        return fileNameOpen == "fail";
+        return fileNameOpen == "123";
     }
 
     public JTextField getWordToFind() {
