@@ -1,39 +1,36 @@
-# def modular_exponentiation(base, exp, mod):
-#     result = 1
-#     base = base % mod
-#     while exp > 0:
-#         if exp % 2 == 1:
-#             result = (result * base) % mod
-#         exp = exp >> 1
-#         base = (base * base) % mod
-#     return result
+from sympy import symbols, expand
 
-# def rsa_decrypt(ciphertext, d, m):
-#     plaintext = []
-#     for c in ciphertext:
-#         plaintext.append(modular_exponentiation(c, d, m))
-#     return plaintext
+# Поле Z5
+Z5 = 5
 
-# # Constants
-# e = 11
-# p = 7
-# q = 19
-# m = p * q
-# phi_m = (p - 1) * (q - 1)
-# d = 59  # Found earlier
+# Данные
+points = [0, 1, 2, 3, 4]
+values = [1, 2, 0, 4, 1]
 
-# ciphertext = [124, 37, 123, 70]
-# plaintext = rsa_decrypt(ciphertext, d, m)
+# Лагранжев интерполяционный полином
+x = symbols('x')
+n = len(points)
+P = 0
 
-# # Map numbers to letters in the Russian alphabet
-# alphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
-# def numbers_to_text(numbers):
-#     return "".join(alphabet[num - 2] for num in numbers)
+for i in range(n):
+    # Лагранжев базис
+    L = 1
+    for j in range(n):
+        if i != j:
+            L *= (x - points[j]) * pow(points[i] - points[j], -1, Z5)
+    L = expand(L) % Z5
+    P += values[i] * L
 
-# # Decode
-# decoded_message = numbers_to_text(plaintext)
-# print("Decoded message:", decoded_message)
+# Приведение коэффициентов в поле Z5
+P = expand(P) % Z5
+print("Восстановленный многочлен r(x):", P)
 
+# Извлечение исходного сообщения m(x)
+# Разделение P(x) на порождающий многочлен g(x) = x^2 + 1
+g = x**2 + 1
+m, remainder = divmod(P, g)
+m = expand(m) % Z5
+remainder = expand(remainder) % Z5
 
-number = (70**59)%133
-print(number)
+print("Исходное сообщение m(x):", m)
+print("Остаток (для проверки):", remainder)

@@ -71,7 +71,7 @@ value_count = 0.1
 value_area = 0.1
 value_distance = -0.1
 bias = 0
-step = 0.0001
+step = 0.00001
 val_array = [value_count, value_area, value_distance, bias, step]
 
 if __name__ == "__main__":
