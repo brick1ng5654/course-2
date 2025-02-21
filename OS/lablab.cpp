@@ -9,7 +9,7 @@ using namespace std;
 
 // Helpful functions ---------------------------
 
-int enter_integer(string message, int a, int b) {
+int enter_integer(wstring message, int a, int b) {
     string input;
     int number;
 
@@ -42,7 +42,7 @@ int main_menu() {
     wcout << "1 - for DRIVES" << endl;
     wcout << "2 - for DIRECTORIES" << endl;
     wcout << "3 - for FILES" << endl;
-    return enter_integer("Choose option: ", 0, 3);
+    return enter_integer(L"Choose option: ", 0, 3);
 }
 
 int drive_menu() {
@@ -50,7 +50,7 @@ int drive_menu() {
     wcout << "0 - for MAIN MENU" << endl;
     wcout << "1 - for OUTPUT DRIVES" << endl;
     wcout << "2 - for OUTPUT DRIVE INFO" << endl;
-    return enter_integer("Choose option: ", 0, 2);
+    return enter_integer(L"Choose option: ", 0, 2);
 }
 
 int dir_menu() {
@@ -62,7 +62,7 @@ int dir_menu() {
     wcout << "4 - for MOVE DIRECTORY" << endl;
     wcout << "5 - for GET DIRECTORY ATTRIBUTES" << endl;
     wcout << "6 - for SET DIRECTORY ATTRIBUTES" << endl;
-    return enter_integer("Choose option: ", 0, 6);
+    return enter_integer(L"Choose option: ", 0, 6);
 }
 
 int file_menu() {
@@ -78,7 +78,7 @@ int file_menu() {
     wcout << "8 - for SET FILE ATTRIBUTES" << endl;
     wcout << "9 - for GET FILE INFORMATION BY HANDLE" << endl;
     wcout << "10 - for SET FILE TIME" << endl;
-    return enter_integer("Choose option: ", 0, 10);
+    return enter_integer(L"Choose option: ", 0, 10);
 }
 
 void wait_reaction(){
@@ -87,15 +87,11 @@ void wait_reaction(){
     getchar();
 }
 
-string get_current_dir(){
+wstring get_current_dir(){
     wchar_t buffer[MAX_PATH];
     DWORD len = GetCurrentDirectoryW(MAX_PATH, buffer);
-    if (len==0) return "";
-    else{
-        wstring wide_str(buffer);
-        string narrow_str(wide_str.begin(), wide_str.end());
-        return narrow_str;
-    }
+    if (len==0) return L"";
+    else return wstring(buffer);
 }
 
 wstring string_to_wstring(const string& str) {
@@ -112,14 +108,14 @@ string wstring_to_string(const wstring& wstr) {
     return str;
 }
 
-wstring function_in_path(string msg_to_path="Function will be executed in that path: ", string msg_to_enter="Enter the name: "){
-    string path = get_current_dir();
+wstring function_in_path(wstring msg_to_path=L"Function will be executed in that path: ", wstring msg_to_enter=L"Enter the name: "){
+    wstring path = get_current_dir();
     string name;
-    wcout << "\n" << msg_to_path << path << "\\" << endl;
+    wcout << L"\n" << msg_to_path << path << L"\\" << endl;
     wcout << msg_to_enter;
     cin >> name;
-    wstring wide_path = string_to_wstring(path) + L"\\" + string_to_wstring(name);
-    wwcout << "LOG " << wide_path;
+    wstring wide_path = path + L"\\" + string_to_wstring(name);
+    wcout << "LOG " << wide_path;
     return wide_path;
 }
 
@@ -179,7 +175,7 @@ void output_drive_info(){
     for (int i=0; i<sizeof(DWORD)*8; i++){
         if (options & 1<<i) counter++;
     }
-    option = enter_integer("Enter the number of drive: ", 1, counter);
+    option = enter_integer(L"Enter the number of drive: ", 1, counter);
 
     counter = 1;
     for (int i=0; i<sizeof(DWORD)*8; i++){
@@ -208,10 +204,10 @@ void output_drive_info(){
     wchar_t volume_name[MAX_PATH], file_system_name[MAX_PATH];
     DWORD serial_number, max_length, sys_flags;
     if (GetVolumeInformationW(path, volume_name,sizeof(volume_name), &serial_number, &max_length, &sys_flags, file_system_name, sizeof(file_system_name))){
-        wwcout << "Volume Name: " << volume_name << endl;
+        wcout << "Volume Name: " << volume_name << endl;
         wcout << "Serial Number: " << serial_number << endl;
         wcout << "Max Component Length: " << max_length << endl;
-        wwcout << "File System Name: " << file_system_name << endl;
+        wcout << "File System Name: " << file_system_name << endl;
         print_sys_flags(sys_flags);
     } else wcout << "Error! Please try again";
 
@@ -226,14 +222,14 @@ void output_drive_info(){
 // Directory Functions --------------------------
 
 void create_dir(){
-    wstring wide_path = function_in_path("Directory will be created in ", "Enter the name of directory: ");
+    wstring wide_path = function_in_path(L"Directory will be created in ", L"Enter the name of directory: ");
     if (CreateDirectoryW(wide_path.c_str(), NULL)){
         wcout << "Directory successfull created" << endl;
     } else wcout << "Error! Directory is not created" << endl;
 }
 
 void remove_dir(){
-    wstring wide_path = function_in_path("The directory to be deleted will be searched in ", "Enter the name of directory: ");
+    wstring wide_path = function_in_path(L"The directory to be deleted will be searched in ", L"Enter the name of directory: ");
     if (RemoveDirectoryW(wide_path.c_str())){
         wcout << "Directory is successfull removed" << endl;
     } else wcout << "Error! Directory is not removed" << endl;
@@ -246,21 +242,21 @@ void create_file(int action_mode_choise){ // 0 - to create file, 1 - to open fil
     DWORD access_mode, share_mode, action_mode;
 
     wstring wide_path;
-    if (action_mode_choise==0) wide_path = function_in_path("File will be created in ", "Enter the name of file (Do not forget about extension): ");
+    if (action_mode_choise==0) wide_path = function_in_path(L"File will be created in ", L"Enter the name of file (Do not forget about extension): ");
     else {
-        wide_path = function_in_path("Fill will be opened in ", "Enter the name of file (Do not forget about extension: ");
+        wide_path = function_in_path(L"Fill will be opened in ", L"Enter the name of file (Do not forget about extension: ");
     }
 
-    wcout << "\nACCESS MODE\n1 - only for READ\n2 - only for WRITE\n3 - for READ and WRITE\n";
-    access_mode_choise = enter_integer("Choose access mode: ", 1, 3);
+    wcout << L"\nACCESS MODE\n1 - only for READ\n2 - only for WRITE\n3 - for READ and WRITE\n";
+    access_mode_choise = enter_integer(L"Choose access mode: ", 1, 3);
     switch(access_mode_choise){
         case 1: access_mode = GENERIC_READ; break;
         case 2: access_mode = GENERIC_WRITE; break;
         case 3: access_mode = GENERIC_READ | GENERIC_WRITE; break;
     }
 
-    wcout << "\nSHARE MODE\n1 - for NOT ALLOWED\n2 - for READ\n3 - for WRITE\n4 - for DELETE\n";
-    share_mode_choise = enter_integer("Choose share mode: ", 1, 4);
+    wcout << L"\nSHARE MODE\n1 - for NOT ALLOWED\n2 - for READ\n3 - for WRITE\n4 - for DELETE\n";
+    share_mode_choise = enter_integer(L"Choose share mode: ", 1, 4);
     switch(share_mode_choise){
         case 1: share_mode= 0; break;
         case 2: share_mode= FILE_SHARE_READ; break;
@@ -304,15 +300,15 @@ void create_file(int action_mode_choise){ // 0 - to create file, 1 - to open fil
 }
 
 void remove_file(){
-    wstring wide_path = function_in_path("File will deleted in ", "Enter the name of file (Do not forget about extension): ");
+    wstring wide_path = function_in_path(L"File will deleted in ", L"Enter the name of file (Do not forget about extension): ");
     if(DeleteFileW(wide_path.c_str())){
         wcout << "\nFile was successfully removed\n";
     } else wcout << "Error! File was not removed";
 }
 
 void copy_file(){
-    wstring wide_path = function_in_path("File will be copied from ", "Etmer the name of file to copy (Do not forget about extension): ");
-    wstring wide_repath = function_in_path("File will be pasted in ", "Enter the new name of copied file: ");
+    wstring wide_path = function_in_path(L"File will be copied from ", L"Etmer the name of file to copy (Do not forget about extension): ");
+    wstring wide_repath = function_in_path(L"File will be pasted in ", L"Enter the new name of copied file: ");
 
     if(CopyFileW(wide_path.c_str(), wide_repath.c_str(), TRUE)){
         wcout << "\nFile was successfully copied\n";
@@ -332,11 +328,11 @@ void copy_file(){
 void rename(int is_dir){
     wstring wide_path, wide_repath;
     if(is_dir==0){
-        wide_path = function_in_path("File to rename fill be from ", "Enter the name of file to rename (Do not forget about extension): ");
-        wide_repath = function_in_path("Renamed file will keeped in ", "Enter the new name of file: ");
+        wide_path = function_in_path(L"File to rename fill be from ", L"Enter the name of file to rename (Do not forget about extension): ");
+        wide_repath = function_in_path(L"Renamed file will keeped in ", L"Enter the new name of file: ");
     } else {
-        wide_path = function_in_path("Directory to rename fill be from ", "Enter the name of directory to rename: ");
-        wide_repath = function_in_path("Renamed directory will keeped in ", "Enter the new name of directory: ");
+        wide_path = function_in_path(L"Directory to rename fill be from ", L"Enter the name of directory to rename: ");
+        wide_repath = function_in_path(L"Renamed directory will keeped in ", L"Enter the new name of directory: ");
     }
     
     if(MoveFileW(wide_path.c_str(), wide_repath.c_str())){
@@ -349,15 +345,15 @@ void rename(int is_dir){
 }
 
 void move(int is_dir){
-    string path = get_current_dir();
+    wstring path = get_current_dir();
     string name, repath;
     if (is_dir==0) {
-        wcout << "\nFile will be moved according to this path: " << path << "\\" << endl;
-        wcout << "Enter the name of file that will be moved (Do not forget about extension): ";
+        wcout << L"\nFile will be moved according to this path: " << path << L"\\" << endl;
+        wcout << L"Enter the name of file that will be moved (Do not forget about extension): ";
     }
     else {
-        wcout << "\nDirectory will be moved according to this path: " << path << "\\" << endl;
-        wcout << "Enter the name of directory that will be moved: ";
+        wcout << L"\nDirectory will be moved according to this path: " << path << L"\\" << endl;
+        wcout << L"Enter the name of directory that will be moved: ";
     }
 
     cin >> name;
@@ -368,11 +364,11 @@ void move(int is_dir){
 
     
     if(MoveFileW(wide_path.c_str(), wide_repath.c_str())){
-        wcout << "File was successfullt moved";
+        wcout << L"File was successfullt moved";
     } else {
         if (GetLastError() == ERROR_ALREADY_EXISTS){
-            int replace = enter_integer("File with equal name exist. Are you want to replace it? (0 - for NO / 1 - for YES):",0, 1);
-            if (replace==0) wcout << "Operation of moving is canceled";
+            int replace = enter_integer(L"File with equal name exist. Are you want to replace it? (0 - for NO / 1 - for YES):",0, 1);
+            if (replace==0) wcout << L"Operation of moving is canceled";
             else MoveFileExW(wide_path.c_str(), wide_repath.c_str(), 0x01);
         }
     }
@@ -396,9 +392,9 @@ void print_file_attr(DWORD attributes) {
 void get_file_attr(int is_dir){
     wstring wide_path;
     if(is_dir==0){
-        wide_path = function_in_path("File for get attributes will be taken from ", "Enter the name of file which attributes will be shown (Do not forget about extension): ");
+        wide_path = function_in_path(L"File for get attributes will be taken from ", L"Enter the name of file which attributes will be shown (Do not forget about extension): ");
     } else {
-        wide_path = function_in_path("Directory for get attributes will be taken from ", "Enter the name of directory which attributes will be shown: ");
+        wide_path = function_in_path(L"Directory for get attributes will be taken from ", L"Enter the name of directory which attributes will be shown: ");
     }
     DWORD attributes = GetFileAttributesW(wide_path.c_str());
     if (attributes == INVALID_FILE_ATTRIBUTES) wcout << "Error! Please try again";
@@ -408,9 +404,9 @@ void get_file_attr(int is_dir){
 void set_file_attr(int is_dir){
     wstring wide_path;
     if (is_dir==0){
-        wide_path = function_in_path("File for set attributes will be taken from ", "Enter the name of file which attributes will be setted (Do not forget about extension): ");
+        wide_path = function_in_path(L"File for set attributes will be taken from ", L"Enter the name of file which attributes will be setted (Do not forget about extension): ");
     } else {
-        wide_path = function_in_path("Directory for set attributes will be taken from ", "Enter the name of directory which attributes will be setted: ");
+        wide_path = function_in_path(L"Directory for set attributes will be taken from ", L"Enter the name of directory which attributes will be setted: ");
     }
 
     DWORD attributes = GetFileAttributesW(wide_path.c_str());
@@ -474,7 +470,7 @@ FILETIME systime_to_filetime(const SYSTEMTIME& st) {
 }
 
 void get_file_info_by_handle(){
-    wstring wide_path = function_in_path("File for get file information by handle will be taken from ", "Enter the name of file which attributes will be shown: ");
+    wstring wide_path = function_in_path(L"File for get file information by handle will be taken from ", L"Enter the name of file which attributes will be shown: ");
 
     HANDLE handle_file = CreateFileW(wide_path.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -520,7 +516,7 @@ void get_file_info_by_handle(){
 }
 
 void set_file_time(){
-    wstring wide_path = function_in_path("File for set file time will be taken from ", "Enter the name of file which file time will be setted (Do not forget about extension): ");
+    wstring wide_path = function_in_path(L"File for set file time will be taken from ", L"Enter the name of file which file time will be setted (Do not forget about extension): ");
 
     HANDLE handle_file = CreateFileW(wide_path.c_str(), FILE_WRITE_ATTRIBUTES, FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (handle_file == INVALID_HANDLE_VALUE) {
@@ -531,7 +527,7 @@ void set_file_time(){
     SYSTEMTIME st;
     FILETIME ftCreation, ftLastAccess, ftLastWrite;
 
-    int choice = enter_integer("Set new creation time? (1 - yes, 0 - no): ",0, 1);
+    int choice = enter_integer(L"Set new creation time? (1 - yes, 0 - no): ",0, 1);
     if (choice) {
         wcout << "Enter creation date (YYYY MM DD HH MM SS): ";
         cin >> st.wYear >> st.wMonth >> st.wDay >> st.wHour >> st.wMinute >> st.wSecond;
@@ -575,7 +571,6 @@ void set_file_time(){
 int main() {
     _setmode(_fileno(stdout), _O_U16TEXT);
     _setmode(_fileno(stdin), _O_U16TEXT);
-
 
     int option;
     do {
