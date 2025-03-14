@@ -1,0 +1,184 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-Logic &mdash; документация База знаний 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=e35015f7"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=cd1d70c9"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="UI-Designer" href="UI-Designer.html" />
+    <link rel="prev" title="Начало работы с контроллером Uvatron 3000PRO" href="guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            База знаний
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="guide.html">Начало работы с контроллером Uvatron 3000PRO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">U-Logic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Обзор</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Быстрый страт</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Палитра узлов</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="UI-Designer.html">UI-Designer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UI-Panel.html">UI-Panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Часто задаваемые вопросы</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">База знаний</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">U-Logic</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="u-logic">
+<h1>U-Logic<a class="headerlink" href="#u-logic" title="Ссылка на этот заголовок"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Вся логика, включая логику интерфейса, программируется в <strong>U-Logic</strong>.
+Для доступа к U-Logic откройте в браузере страницу <strong>&lt;IP Контроллера&gt;:1880</strong>.</p>
+</div>
+<section id="id1">
+<h2>Обзор<a class="headerlink" href="#id1" title="Ссылка на этот заголовок"></a></h2>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/about.png"><img alt="_images/about.png" src="_images/about.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Компоненты U-Logic</span><a class="headerlink" href="#id4" title="Ссылка на это изображение"></a></p>
+</figcaption>
+</figure>
+<p><strong>Окно редактора <em>U-Logic</em> состоит из четырех компонентов:</strong></p>
+<ol class="arabic simple">
+<li><p>Заголовок вверху содержит кнопку <strong>развернуть</strong>, <strong>главное меню</strong> , <strong>аутентификация пользователя</strong>, <strong>меню пользователя</strong>.</p></li>
+<li><p>Палитра слева содержит доступные для использования узлы.</p></li>
+<li><p>Основное рабочее пространство посередине, где создаются потоки.</p></li>
+<li><p>Боковая панель справа.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>Быстрый страт<a class="headerlink" href="#id2" title="Ссылка на этот заголовок"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>За работу графического интерфейса отвечает узел <strong>UI Control Panel</strong>.
+Без этого узла графический интерфейс панели управления неактивен и недоступен.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Для инициализации интерфейса добавьте узел <strong>UI Control Panel</strong> в рабочую область.</p></li>
+</ol>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/ADDUIPanelNode.png"><img alt="_images/ADDUIPanelNode.png" src="_images/ADDUIPanelNode.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Добавленные узлы UI Control Panel</span><a class="headerlink" href="#id5" title="Ссылка на это изображение"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Откройте его настройки, дважды кликнув на него. В появившемся окне нажмите на иконку <img src="_static/Add.png" width="40" height="40"></p></li>
+</ol>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/EditNodeUI.png"><img alt="_images/EditNodeUI.png" src="_images/EditNodeUI.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Настройка узла</span><a class="headerlink" href="#id6" title="Ссылка на это изображение"></a></p>
+</figcaption>
+</figure>
+<p>напротив поля <code class="docutils literal notranslate"><span class="pre">path</span></code>, добавьте конфигурацию <code class="docutils literal notranslate"><span class="pre">\web-client</span></code>, примените настройки узла и запустите поток <strong>U-Logic</strong>.
+Используйте только один экземпляр узла UI Control Panel для работы всех графических интерфейсов; не дублируйте и не
+создавайте новые экземпляры. В U-Logic по умолчанию включены все необходимые узлы для работы с популярными
+протоколами, а также дополнительные вспомогательные узлы. Для каждого узла есть описание и примеры его использования.
+Чтобы вызвать справку по узлу, выберите его и нажмите <strong>Ctrl + G</strong>, затем <strong>H</strong>. Если возможностей узлов недостаточно
+для взаимодействия с оборудованием, в U-Logic включены библиотеки, которые можно использовать в узлах <strong>Function</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="p">:</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;ws&quot;</span><span class="p">),</span>
+<span class="n">ssh2</span><span class="p">:</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;ssh2&quot;</span><span class="p">),</span>
+<span class="n">http</span><span class="p">:</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;node:http&quot;</span><span class="p">),</span> 
+<span class="n">net</span><span class="p">:</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;node:net&quot;</span><span class="p">),</span> 
+<span class="n">tls</span><span class="p">:</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;node:tls&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Пример использования библиотек находится в разделе <a class="reference internal" href="U-Logic-Function.html"><span class="std std-doc">Function</span></a></p>
+</div>
+</section>
+<section id="id3">
+<h2>Палитра узлов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
+        <a href="guide.html" class="btn btn-neutral float-left" title="Начало работы с контроллером Uvatron 3000PRO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="UI-Designer.html" class="btn btn-neutral float-right" title="UI-Designer" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2025, uvatron.ru. </p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
