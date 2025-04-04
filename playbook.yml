@@ -1,0 +1,43 @@
+---
+- name: Install and configure Docker
+  hosts: all
+  become: true 
+
+  tasks:
+    - name: Update YUM package index
+      yum:
+        update_cache: yes
+
+    - name: Install required package
+      yum:
+        name:
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+
+    - name: Add Docker repository
+      yum_repository:
+        name: Docker
+        description: Docker Repository
+        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
+        enable: yes
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+
+    - name: Install Docker
+      yum:
+        name: docker-ce
+        state: present
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enable: yes
+
+    - name: Add vagrant user to docker group
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
