@@ -1,3 +1,0 @@
-C:/GitHub/course-2/AaDS/build/CMakeFiles/lab02.dir
-C:/GitHub/course-2/AaDS/build/CMakeFiles/edit_cache.dir
-C:/GitHub/course-2/AaDS/build/CMakeFiles/rebuild_cache.dir
